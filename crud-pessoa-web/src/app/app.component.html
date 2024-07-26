@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Cadastro de Pessoas</h1>
+
+  <!-- Formulário de Cadastro -->
+  <person-form
+    [editPerson]="personSelected"
+    (onCreatePerson)="onPersonCreated($event)"
+    (onUpdatePerson)="onPersonUpdated($event)"
+    (onDeletePerson)="onPersonDeleted($event)"
+  ></person-form>
+
+  <!-- Lista de pessoas cadastradas -->
+  <person-list (onSelectPerson)="onPersonSelected($event)" [reloadList]="data"></person-list>
+</div>

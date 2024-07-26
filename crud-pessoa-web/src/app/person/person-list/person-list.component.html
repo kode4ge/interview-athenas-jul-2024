@@ -1,0 +1,29 @@
+<!-- Lista de Pessoas Cadastradas -->
+<div class="mt-4">
+  <!-- Search Input -->
+  <div class="input-group mb-3">
+    <input type="text" id="search-input" class="form-control" placeholder="Pesquisar por nome" aria-label="Pesquisar por nome" [(ngModel)]="name">
+    <button class="btn btn-primary" type="button" (click)="filterPeople()">Pesquisar</button>
+  </div>
+
+  <!-- Person List -->
+  <ul id="person-list" class="list-group">
+    <li class="list-group-item list-header" *ngIf="people.length">
+      <div class="row">
+        <div class="col-md-6">Nome</div>
+        <div class="col-md-6">CPF</div>
+      </div>
+    </li>
+    <li class="list-group-item" *ngFor="let person of people" [ngClass]="{'selected': selected.id === person.id}" (click)="handleSelected(person)">
+      <div class="row">
+        <div class="col-md-6">{{ person.name }}</div>
+        <div class="col-md-6">{{ person.cpf }}</div>
+      </div>
+    </li>
+    <li class="list-group-item p-4" *ngIf="!people.length">
+      <div class="row">
+        <div class="col-md-12 text-center">Nenhum registro disponível</div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,52 @@
+<!-- Formulário de Cadastro -->
+<form id="person-form" (ngSubmit)="onSubmit()" #personForm="ngForm">
+  <!-- Name Input -->
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome:</label>
+    <input type="text" id="name" name="name" class="form-control" [(ngModel)]="person.name" required>
+  </div>
+
+  <!-- Birthdate and CPF -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="birth-date" class="form-label">Data de nascimento:</label>
+      <input type="date" id="birth-date" name="birth_date" class="form-control" [(ngModel)]="person.birth_date" required>
+    </div>
+    <div class="col-md-6">
+      <label for="cpf" class="form-label">CPF:</label>
+      <input type="text" id="cpf" name="cpf" class="form-control" [(ngModel)]="person.cpf" required>
+    </div>
+  </div>
+
+  <!-- Sex, Height, and Weight -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="sex" class="form-label">Sexo:</label>
+      <select id="sex" name="sex"  class="form-control" [(ngModel)]="person.sex" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="height" class="form-label">Altura (m):</label>
+      <input type="number" id="height" name="height" class="form-control" placeholder="Exemplo: 1.55" min="0" max="3" step="0.05" [(ngModel)]="person.height" required>
+    </div>
+    <div class="col-md-4">
+      <label for="weight" class="form-label">Peso (kg):</label>
+      <input type="number" id="weight" name="weight" class="form-control" placeholder="Exemplo: 85.0" min="0" max="300" step="5.0" [(ngModel)]="person.weight" required>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Incluir</button>
+    <button type="button" class="btn btn-primary" (click)="updatePerson()" [disabled]="!person.id">Alterar</button>
+    <button type="button" class="btn btn-danger" (click)="deletePerson()" [disabled]="!person.id">Excluir</button>
+    <button type="button" class="btn btn-primary" (click)="showIdealWeight()" [disabled]="!person.id">Peso ideal</button>
+    <button type="reset" class="btn btn-primary" (click)="clearForm()">Limpar</button>
+  </div>
+</form>
+
+<!-- Trigger Button -->
+<info-modal title="Peso ideal" content="{{ idealWeightModalContent }}" button="OK"></info-modal>
